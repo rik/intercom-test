@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+const path = require('path')
+
+const { choose_customers_close_to } = require('../src/invite')
+const { parse } = require('../src/invite/intercom_file')
+
+const argv = process.argv.slice(2)
+if (argv.length !== 1) {
+    process.stdout.write(
+        'I need a filepath (and only one) to let you know who to invite\n\n'
+    )
+    process.stdout.write(`Usage:\n${path.basename(__filename)} filepath`)
+    process.exit(1)
+}
+
+const filepath = argv[0]
+const DUBLIN_OFFICE = { latitude: 53.3393, longitude: -6.2576841 }
+parse(filepath)
+    .then(customers => {
+        for (const customer_to_invite of choose_customers_close_to(
+            customers,
+            DUBLIN_OFFICE
+        )) {
+            process.stdout.write(JSON.stringify(customer_to_invite) + '\n')
+        }
+    })
+    .catch(e => {
+        console.log(e.message)
+    })

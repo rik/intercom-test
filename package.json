@@ -1,0 +1,16 @@
+{
+    "name": "intercom-test",
+    "version": "0.0.1",
+    "description": "A top notch test",
+    "scripts": {
+        "test": "mocha 'src/**/*.test.js' --growl",
+        "test:watch": "mocha 'src/**/*.test.js' --growl --watch",
+        "prettier": "prettier --single-quote --trailing-comma es5 --no-semi --tab-width 4 --write '**/*{js,json}'"
+    },
+    "devDependencies": {
+        "chai": "^4.1.0",
+        "mocha": "^3.4.2",
+        "prettier": "^1.5.3"
+    },
+    "license": "UNLICENSED"
+}

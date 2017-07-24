@@ -1,0 +1,2 @@
+{"foo": "bar"}
+THIS LINE IS NOT VALID JSON
